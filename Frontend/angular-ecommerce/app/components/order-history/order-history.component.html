@@ -1,0 +1,53 @@
+<div class="main-content">
+  <div class="section-content section-content-p30">
+    <div class="container-fluid">
+      <h3>Your Orders</h3>
+
+      <div *ngIf="orderHistoryList.length > 0">
+        <table class="table table-bordered w-75">
+          <tr>
+            <th width="25%" class="text-center">Order Tracking Number</th>
+            <th width="10%" class="text-center">Total Price</th>
+            <th width="10%" class="text-center">Total Quantity</th>
+            <th width="10%">Date</th>
+            <th width="10%" class="text-center">Action</th>
+          </tr>
+
+          <tr *ngFor="let tempOrderHistory of orderHistoryList">
+            <td class="text-center">
+              {{ tempOrderHistory.orderTrackingNumber }}
+            </td>
+            <td class="text-center">
+              <!-- {{ tempOrderHistory.totalPrice | currency : "USD" }} -->
+              {{ tempOrderHistory.totalPrice }}
+            </td>
+            <td class="text-center">
+              {{ tempOrderHistory.totalQuantity }}
+            </td>
+            <td>
+              <!-- {{ tempOrderHistory.dateCreated | date : "medium" }} -->
+              {{ tempOrderHistory.dateCreated | date : "HH:mm dd/MM/yyyy" }}
+            </td>
+            <td class="text-center">
+              <button
+                class="btn btn-info"
+                [routerLink]="['/order-detail', tempOrderHistory.id]"
+              >
+                View
+              </button>
+            </td>
+          </tr>
+        </table>
+      </div>
+
+      <!-- if order history is empty then display a message -->
+      <div
+        *ngIf="orderHistoryList.length == 0"
+        class="alert alert-warning col-md-12"
+        role="alert"
+      >
+        No orders found.
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+.custom-footer{
+  z-index: -1;
+  text-decoration: none;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+.page-wrapper{
+  font-family: Arial, sans-serif;
+}
+
+footer{
+  font-family: Arial, sans-serif;
+}
+

@@ -1,0 +1,200 @@
+<div class="main-content page-m">
+  <div class="section-content">
+    <div class="container-fluid">
+      <h2>Revenue statistics</h2>
+      <h4>Renenue:</h4>
+
+      <div class="date-picker-row">
+        <div>
+          <label for="startDate">Start Date:</label>
+          <input type="date" [(ngModel)]="startDate" id="startDate" />
+        </div>
+
+        <div>
+          <label for="endDate">End Date:</label>
+          <input type="date" [(ngModel)]="endDate" id="endDate" />
+        </div>
+      </div>
+
+      <button class="btn btn-info mt-3 mb-3" (click)="calculateRevenue()">
+        Revenue
+      </button>
+      <table class="table">
+        <thead>
+          <tr class="table-info">
+            <th class="text-center">Total price in times</th>
+            <th class="text-center">Total quantity in times</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="text-center">{{ revenueData.totalPriceInTimes }}</td>
+            <td class="text-center">{{ revenueData.totalQuantityInTimes }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h5>Top number products in times</h5>
+
+      <table class="table">
+        <thead>
+          <tr class="table-info">
+            <th>Product name</th>
+            <th class="text-center">Quantity</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of revenueData.topNumberProductsInTimes">
+            <td>{{ item[0] }}</td>
+            <td class="text-center">{{ item[1] }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h5>Top customer buy much in times</h5>
+
+      <table class="table">
+        <thead>
+          <tr class="table-info">
+            <th>First name</th>
+            <th>Last name</th>
+            <th class="text-center">Total quantity</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of revenueData.topCustomersBuyMuchInTimes">
+            <td>{{ item[0] }}</td>
+            <td>{{ item[1] }}</td>
+            <td class="text-center">{{ item[2] }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h5>Top number of product sell in year</h5>
+
+      <div
+        *ngFor="
+          let item of revenueData.topNumberOfProductYearSell;
+          let i = index
+        "
+      >
+        <div *ngIf="item[0] && item[1]">
+          <div>{{ i + 2023 }}<span> year</span></div>
+          <table class="table">
+            <thead>
+              <tr class="table-info">
+                <th>Product name</th>
+                <th class="text-center">Total quantity</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="
+                  let subItem of revenueData.topNumberOfProductYearSell[i]
+                "
+              >
+                <td>{{ subItem[0] }}</td>
+                <td class="text-center">{{ subItem[1] }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h5>Top number of product sell in month</h5>
+
+        <div
+          *ngFor="
+            let item of revenueData.topNumberOfProductMonthSell;
+            let i = index
+          "
+        >
+          <div *ngIf="item[0] && item[1]">
+            <div>
+              Month
+              {{ i + 1 }}
+            </div>
+            <table class="table">
+              <thead>
+                <tr class="table-info">
+                  <th>Product name</th>
+                  <th class="text-center">Total quantity</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  *ngFor="
+                    let subItem of revenueData.topNumberOfProductMonthSell[i]
+                  "
+                >
+                  <td>{{ subItem[0] }}</td>
+                  <td class="text-center">{{ subItem[1] }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <h5>Top number of product sell in day of week</h5>
+
+        <div
+          *ngFor="
+            let item of revenueData.topNumberOfProductDaySell;
+            let i = index
+          "
+        >
+          <div *ngIf="item[0] && item[1]">
+            <div>{{ i + 2 }}<span> Day of week</span></div>
+            <table class="table">
+              <thead>
+                <tr class="table-info">
+                  <th>Product name</th>
+                  <th class="text-center">Total quantity</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  *ngFor="
+                    let subItem of revenueData.topNumberOfProductDaySell[i]
+                  "
+                >
+                  <td>{{ subItem[0] }}</td>
+                  <td class="text-center">{{ subItem[1] }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <h5>Top number of product sell in hour</h5>
+        <div
+          *ngFor="
+            let item of revenueData.topNumberOfProductHourSell;
+            let i = index
+          "
+        >
+          <div *ngIf="item[0] && item[1]">
+            <div>{{ i }}<span> hour</span></div>
+            <table class="table">
+              <thead>
+                <tr class="table-info">
+                  <th>Product name</th>
+                  <th class="text-center">Total quantity</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  *ngFor="
+                    let subItem of revenueData.topNumberOfProductHourSell[i]
+                  "
+                >
+                  <td>{{ subItem[0] }}</td>
+                  <td class="text-center">{{ subItem[1] }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

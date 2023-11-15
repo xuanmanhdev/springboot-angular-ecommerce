@@ -1,0 +1,28 @@
+<a routerLink="/product-list"> Return back product list</a>
+<h3>Product Details</h3>
+<table class="table">
+  <thead class="table-info">
+    <tr>
+      <td>Sku</td>
+      <td>Name</td>
+      <td>Description</td>
+      <td>Unit price</td>
+      <td>Image url</td>
+      <td>Units In Stock</td>
+      <td>Date Created</td>
+      <td>Last Updated</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{ product.sku }}</td>
+      <td>{{ product.name }}</td>
+      <td>{{ product.description }}</td>
+      <td>{{ product.unitPrice }}</td>
+      <td>{{ product.imageUrl }}</td>
+      <td>{{ product.unitsInStock }}</td>
+      <td>{{ product.dateCreated | date : "HH:mm dd/MM/yyyy" }}</td>
+      <td>{{ product.lastUpdated | date : "HH:mm dd/MM/yyyy" }}</td>
+    </tr>
+  </tbody>
+</table>

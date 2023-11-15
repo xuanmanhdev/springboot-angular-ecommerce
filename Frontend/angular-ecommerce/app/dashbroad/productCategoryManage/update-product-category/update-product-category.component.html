@@ -1,0 +1,45 @@
+<div class="main-content page-m">
+  <div class="section-content section-content-p30">
+    <div class="container-fluid">
+      <a routerLink="/product-category-list"
+        >Return back product category list</a
+      >
+
+      <div *ngIf="isUpdate; else createText">
+        <h3>Update product category</h3>
+      </div>
+      <ng-template #createText><h3>Create product category</h3></ng-template>
+      <form [formGroup]="productCategoryForm" (ngSubmit)="onSubmit()">
+        <div class="row">
+          <div class="col-md-2"><label>Product category name:</label></div>
+          <div class="col-md-9">
+            <div class="input-space">
+              <input
+                type="text"
+                id="categoryName"
+                formControlName="categoryName"
+              />
+            </div>
+            <div
+              *ngIf="
+                productCategoryForm.get('categoryName')!.invalid &&
+                productCategoryForm.get('categoryName')!.touched
+              "
+              class="alert alert-danger mt-1"
+            >
+              Category name is required.
+            </div>
+          </div>
+        </div>
+
+        <button
+          class="btn btn-info"
+          type="submit"
+          [disabled]="productCategoryForm.invalid"
+        >
+          Update
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,61 @@
+<h2>Product category list</h2>
+<div class="input-group mb-3 custom-div">
+  <input
+    type="text"
+    class="form-control form-control-lg"
+    [(ngModel)]="queryParams.q"
+    placeholder="Input search text"
+  />
+  <div class="input-group-append">
+    <button class="btn btn-primary btn-lg" (click)="search()">Search</button>
+  </div>
+</div>
+
+<div class="mb-15">
+  <button
+    class="btn btn-primary btn-lg mb-3"
+    routerLink="/create-product-category"
+  >
+    Create new product category
+  </button>
+
+  <button class="btn btn-primary btn-lg mb-3" (click)="reloadPage()">
+    <i class="fa-solid fa-arrows-rotate"></i> Reload Page to update data list
+  </button>
+</div>
+
+<table class="table">
+  <thead class="table-info">
+    <tr>
+      <th (click)="sort('categoryName')">Category name</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of dataList">
+      <td>{{ data.categoryName }}</td>
+      <td>
+        <button
+          class="btn btn-info"
+          [routerLink]="['/update-product-category', data.id]"
+        >
+          Update
+        </button>
+        <button class="btn btn-danger" (click)="deleteProductCategory(data.id)">
+          Delete
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<ngb-pagination
+  [collectionSize]="totalElements"
+  [(page)]="queryParams.page"
+  [pageSize]="queryParams.size"
+  (pageChange)="pageChange($event)"
+  [maxSize]="5"
+  [rotate]="false"
+  [boundaryLinks]="true"
+  [ellipses]="true"
+></ngb-pagination>

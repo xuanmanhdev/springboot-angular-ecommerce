@@ -1,0 +1,13 @@
+table{
+  margin-bottom: 30px;
+}
+
+.date-picker-row {
+  display: flex;
+  gap: 20px;
+}
+
+.date-picker-row div {
+  display: flex;
+  flex-direction: column;
+}

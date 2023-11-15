@@ -1,0 +1,77 @@
+<div class="page-wrapper">
+  <!-- MENU SIDEBAR-->
+  <aside class="menu-sidebar d-none d-lg-block">
+    <div class="logo">
+      <a routerLink="/products">
+        <img
+          src="assets/images/logo.png"
+          alt="luv2shop"
+          class="img-responsive"
+        />
+      </a>
+    </div>
+
+    <pre *ngIf="!adminMode">
+    <app-product-category-menu></app-product-category-menu>
+    </pre>
+
+    <pre *ngIf="adminMode">
+      <app-admin-menu-manage></app-admin-menu-manage>
+      </pre>
+  </aside>
+  <!-- END MENU SIDEBAR-->
+
+  <div class="page-container">
+    <!-- HEADER DESKTOP-->
+    <header class="header-desktop">
+      <div class="section-content section-content-p30">
+        <div class="container-fluid">
+          <div class="header-wrap">
+            <app-search></app-search>
+
+            <ng-container *ngIf="isLoggedIn; else showLoginButton">
+              <button class="btn btn-primary" (click)="logout()">
+                <i class="fa-solid fa-lock"></i> Logout
+              </button>
+            </ng-container>
+
+            <ng-template #showLoginButton>
+              <button class="btn btn-primary" (click)="login()">
+                <i class="fa-solid fa-unlock-keyhole"></i> Login
+              </button>
+            </ng-template>
+
+            <button class="btn btn-primary" routerLink="/order-history">
+              <i class="fa-solid fa-clock-rotate-left"></i> Order history
+            </button>
+
+            <button
+              (click)="adminManageMode()"
+              class="btn btn-primary"
+              style="margin-left: 10px"
+            >
+              {{ adminMode ? "Admin mode" : "Normal mode" }}
+            </button>
+
+            <app-cart-status></app-cart-status>
+          </div>
+          <div class="account-wrap"></div>
+        </div>
+      </div>
+    </header>
+    <!-- END HEADER DESKTOP-->
+
+    <!-- MAIN CONTENT-->
+    <router-outlet></router-outlet>
+  </div>
+</div>
+
+<!-- ENDS PAGE CONTAINER -->
+
+<footer class="custom-footer">
+  <ul>
+    <li><a href="#">About Us</a></li>
+    <li><a href="#">Contact Us</a></li>
+    <li><a href="#">Help</a></li>
+  </ul>
+</footer>

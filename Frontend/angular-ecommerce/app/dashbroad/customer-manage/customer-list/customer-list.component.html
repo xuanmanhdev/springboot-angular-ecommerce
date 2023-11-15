@@ -1,0 +1,72 @@
+<h2>Customer list</h2>
+<div class="input-group mb-3 custom-div">
+  <input
+    type="text"
+    class="form-control form-control-lg"
+    [(ngModel)]="queryParams.q"
+    placeholder="Input search text"
+  />
+  <div class="input-group-append">
+    <button class="btn btn-primary btn-lg" (click)="search()">Search</button>
+  </div>
+</div>
+
+<div class="mb-15">
+  <button class="btn btn-primary btn-lg mb-3" routerLink="/create-customer">
+    Create new customer
+  </button>
+
+  <button class="btn btn-primary btn-lg mb-3" (click)="reloadPage()">
+    <i class="fa-solid fa-arrows-rotate"></i> Reload Page to update data list
+  </button>
+</div>
+
+<table class="table">
+  <thead class="table-info">
+    <tr>
+      <th (click)="sort('firstName')">First name</th>
+      <th (click)="sort('lastName')">Last name</th>
+      <td (click)="sort('email')">Email</td>
+      <td (click)="sort('phoneNumber')">Phone number</td>
+      <td (click)="sort('role')">Role</td>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of dataList">
+      <td>{{ data.firstName }}</td>
+      <td>{{ data.lastName }}</td>
+      <td>{{ data.email }}</td>
+      <td>{{ data.phoneNumber }}</td>
+      <td>{{ data.role }}</td>
+      <td>
+        <button
+          class="btn btn-info"
+          [routerLink]="['/update-customer', data.id]"
+        >
+          Update
+        </button>
+        <button
+          class="btn btn-info"
+          [routerLink]="['/customer-detail', data.id]"
+        >
+          View
+        </button>
+        <button class="btn btn-danger" (click)="deleteCustomer(data.id)">
+          Delete
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<ngb-pagination
+  [collectionSize]="totalElements"
+  [(page)]="queryParams.page"
+  [pageSize]="queryParams.size"
+  (pageChange)="pageChange($event)"
+  [maxSize]="5"
+  [rotate]="false"
+  [boundaryLinks]="true"
+  [ellipses]="true"
+></ngb-pagination>

@@ -1,0 +1,88 @@
+<h2>Automatic Slideshow</h2>
+<p>Change image every 2 seconds:</p>
+
+<div class="slideshow">
+  <img [src]="currentImage" alt="Slideshow Image" />
+</div>
+
+<div *ngFor="let category of categories">
+  <h2>{{ category.category.categoryName }}</h2>
+  <div class="product-row">
+    <div *ngFor="let product of category.productList">
+      <div class="product-item">
+        <img
+          routerLink="/products/{{ product[0] }}"
+          [src]="'data:image/png;base64,' + product[4]"
+          alt="{{ product[1] }}"
+        />
+        <p routerLink="/products/{{ product[0] }}">{{ product[1] }}</p>
+        <p>Price: ${{ product[2] }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Test -->
+<!-- <div class="container row">
+  <div class="col-md-6">
+    <input
+      type="text"
+      class="form-control"
+      id="name"
+      placeholder="image name"
+      [(ngModel)]="imageName"
+      name="name"
+    />
+  </div>
+  <div class="col-md-6">
+    <input type="button" (click)="getImage()" value="Get Image" />
+  </div>
+</div>
+
+<div class="container row">
+  <div class="col-md-12">
+    <div *ngIf="retrievedImage">
+      <img [src]="retrievedImage" />
+    </div>
+  </div>
+</div> -->
+
+<!-- start -->
+<!-- <div>
+  <h2>Create a Product</h2>
+  <form (ngSubmit)="onSubmit()">
+    <div>
+      <label for="description">description:</label>
+      <input
+        type="text"
+        id="description"
+        name="description"
+        [(ngModel)]="productDto.description"
+        required
+      />
+    </div>
+    <div>
+      <label for="name">name:</label>
+      <input
+        type="text"
+        id="name"
+        name="name"
+        [(ngModel)]="productDto.name"
+        required
+      />
+    </div>
+    <div>
+      <label for="imageFiles">Upload Images:</label>
+      <input
+        type="file"
+        id="imageFiles"
+        name="imageFiles"
+        multiple
+        (change)="onFileChange($event)"
+      />
+    </div>
+    <div>
+      <button class="btn btn-info" type="submit">Create Product</button>
+    </div>
+  </form>
+</div> -->

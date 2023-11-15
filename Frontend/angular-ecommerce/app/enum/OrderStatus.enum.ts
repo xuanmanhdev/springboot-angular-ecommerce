@@ -1,0 +1,5 @@
+export enum OrderStatus {
+  WAITFORACCEPT = 'WAITFORACCEPT',
+  COMPLETE = 'COMPLETE',
+  CANCEL = 'CANCEL'
+}

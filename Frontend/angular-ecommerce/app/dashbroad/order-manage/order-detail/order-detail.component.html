@@ -1,0 +1,80 @@
+<a routerLink="/order-list">Return back order list</a>
+
+<h2>Order List</h2>
+<h4>Order information:</h4>
+<table class="table">
+  <thead class="table-info">
+    <tr>
+      <td>Order Tracking Number</td>
+      <td>Total Price</td>
+      <td>Total Quantity</td>
+      <td>Date Created</td>
+      <td>Status</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{ order.orderTrackingNumber }}</td>
+      <td>{{ order.totalPrice }}</td>
+      <td>{{ order.totalQuantity }}</td>
+      <td>{{ order.dateCreated | date : "HH:mm dd/MM/yyyy" }}</td>
+      <td>{{ order.status }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4>Order item list information:</h4>
+<table class="table">
+  <thead class="table-info">
+    <tr>
+      <td>Image</td>
+      <td>Unit Price</td>
+      <td>Quantity</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let orderItem of orderItems">
+      <td>{{ orderItem.imageUrl }}</td>
+      <td>{{ orderItem.unitPrice }}</td>
+      <td>{{ orderItem.quantity }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4>Customer information:</h4>
+<table class="table">
+  <thead class="table-info">
+    <tr>
+      <td>First Name</td>
+      <td>Last Name</td>
+      <td>Email</td>
+      <td>Phone Number</td>
+      <td>Role</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{ customer.firstName }}</td>
+      <td>{{ customer.lastName }}</td>
+      <td>{{ customer.email }}</td>
+      <td>{{ customer.phoneNumber }}</td>
+      <td>{{ customer.role }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4>Address information:</h4>
+<table class="table">
+  <thead class="table-info">
+    <tr>
+      <td>Address info</td>
+      <td>State</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{ address.addressInfo }}</td>
+      <td>{{ address.state }}</td>
+    </tr>
+  </tbody>
+</table>

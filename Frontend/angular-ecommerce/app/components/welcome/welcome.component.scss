@@ -1,0 +1,38 @@
+
+h2{
+  margin-top: 100px;
+}
+
+.slideshow {
+  max-width: 100%;
+  height: 500px;
+  overflow: hidden;
+  // max-height: 500px;
+}
+
+/* product-list.component.css */
+.product-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-bottom: 20px;
+
+}
+
+.product-item {
+  border: 1px solid #ccc;
+  margin: 10px;
+  padding: 10px;
+  //  width: calc(20% - 20px); /* Adjust the width as needed */
+  box-sizing: border-box;
+  text-align: center;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+.product-item img{
+  height: 200px;
+  width: 200px;
+}

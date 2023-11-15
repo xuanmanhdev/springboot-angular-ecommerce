@@ -1,0 +1,79 @@
+<h2>Product list</h2>
+<div class="input-group mb-3">
+  <input
+    type="text"
+    class="form-control form-control-lg"
+    [(ngModel)]="queryParams.q"
+    placeholder="Input search text"
+  />
+  <div class="input-group-append">
+    <button class="btn btn-primary btn-lg" (click)="search()">Search</button>
+  </div>
+</div>
+
+<div class="mb-15">
+  <button class="btn btn-primary btn-lg mb-3 mr-3" routerLink="/create-product">
+    Create new product
+  </button>
+
+  <button class="btn btn-primary btn-lg mb-3" (click)="reloadPage()">
+    <i class="fa-solid fa-arrows-rotate"></i> Reload Page to update data list
+  </button>
+</div>
+
+<table class="table">
+  <thead class="table-info">
+    <tr>
+      <th (click)="sort('sku')">Sku</th>
+      <th (click)="sort('name')">Name</th>
+      <th (click)="sort('description')">Description</th>
+      <th class="text-center" (click)="sort('unitPrice')">Unit price</th>
+      <th class="text-center" (click)="sort('unitsInStock')">Units in stock</th>
+      <th (click)="sort('dateCreated')">Date created</th>
+      <th (click)="sort('lastUpdated')">Last updated</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of dataList">
+      <td>{{ data.sku }}</td>
+      <td>{{ data.name }}</td>
+      <td>{{ data.description }}</td>
+      <td class="text-center">{{ data.unitPrice }}</td>
+      <td class="text-center">{{ data.unitsInStock }}</td>
+      <td>{{ data.dateCreated | date : "HH:mm dd/MM/yyyy" }}</td>
+      <td>{{ data.lastUpdated | date : "HH:mm dd/MM/yyyy" }}</td>
+      <td>
+        <button
+          class="btn btn-info"
+          [routerLink]="['/update-product', data.id]"
+        >
+          Update
+        </button>
+
+        <button
+          class="btn btn-info"
+          [routerLink]="['/product-detail', data.id]"
+        >
+          View
+        </button>
+        <button class="btn btn-danger" (click)="deleteProduct(data.id)">
+          Delete
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- Test file -->
+
+<ngb-pagination
+  [collectionSize]="totalElements"
+  [(page)]="queryParams.page"
+  [pageSize]="queryParams.size"
+  (pageChange)="pageChange($event)"
+  [maxSize]="5"
+  [rotate]="false"
+  [boundaryLinks]="true"
+  [ellipses]="true"
+></ngb-pagination>

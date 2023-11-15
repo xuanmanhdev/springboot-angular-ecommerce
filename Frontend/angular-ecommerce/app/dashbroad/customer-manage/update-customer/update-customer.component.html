@@ -1,0 +1,118 @@
+<div class="main-content page-m">
+  <div class="section-content section-content-p30">
+    <div class="container-fluid">
+      <div *ngIf="isUpdate; else createText">
+        <h3>Update customer</h3>
+      </div>
+      <ng-template #createText><h3>Create customer</h3></ng-template>
+
+      <form [formGroup]="customerForm" (ngSubmit)="onSubmit()">
+        <div class="row">
+          <div class="col-md-2"><label>First Name:</label></div>
+          <div class="col-md-9">
+            <div class="input-space">
+              <input type="text" id="firstName" formControlName="firstName" />
+            </div>
+            <div
+              *ngIf="
+                customerForm.get('firstName')!.invalid &&
+                customerForm.get('firstName')!.touched
+              "
+              class="alert alert-danger mt-1"
+            >
+              First name is required.
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-2"><label>Last Name:</label></div>
+          <div class="col-md-9">
+            <div class="input-space">
+              <input type="text" id="lastName" formControlName="lastName" />
+            </div>
+            <div
+              *ngIf="
+                customerForm.get('lastName')!.invalid &&
+                customerForm.get('lastName')!.touched
+              "
+              class="alert alert-danger mt-1"
+            >
+              Last name is required.
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-2"><label>Email:</label></div>
+          <div class="col-md-9">
+            <div class="input-space">
+              <input type="text" id="email" formControlName="email" />
+            </div>
+            <div
+              *ngIf="
+                customerForm.get('email')!.invalid &&
+                customerForm.get('email')!.touched
+              "
+              class="alert alert-danger mt-1"
+            >
+              Email is required.
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-2"><label>Phone Number:</label></div>
+          <div class="col-md-9">
+            <div class="input-space">
+              <input
+                type="text"
+                id="phoneNumber"
+                formControlName="phoneNumber"
+              />
+            </div>
+            <div
+              *ngIf="
+                customerForm.get('phoneNumber')!.invalid &&
+                customerForm.get('phoneNumber')!.touched
+              "
+              class="alert alert-danger mt-1"
+            >
+              Phone number is required.
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-2"><label>Role:</label></div>
+          <div class="col-md-9">
+            <div class="input-space">
+              <select formControlName="role">
+                <option *ngFor="let role of roles" [value]="role">
+                  {{ role }}
+                </option>
+              </select>
+            </div>
+            <div
+              *ngIf="
+                customerForm.get('role')!.invalid &&
+                customerForm.get('role')!.touched
+              "
+              class="alert alert-danger mt-1"
+            >
+              Role is required.
+            </div>
+          </div>
+        </div>
+
+        <button
+          type="submit"
+          [disabled]="customerForm.invalid"
+          class="btn btn-info"
+        >
+          Update
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
